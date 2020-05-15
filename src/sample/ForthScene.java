@@ -37,6 +37,25 @@ public class ForthScene {
     @FXML
     Button nextBTN;
 
+    public static void setNoOfHoles(int noOfHoles) {
+        ForthScene.noOfHoles = noOfHoles;
+    }
+
+    public static void getFromThird(Manager temp) {
+        manager = temp;
+    }
+
+    public static void getActiveStage(Stage temp) {
+        window = temp;
+    }
+
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene4.fxml"));
+        window.setTitle("Forth Scene");
+        window.setScene(new Scene(root, 800, 600));
+        FifthScene.getActiveStage(window);
+        window.show();
+    }
 
     public void initialize() {
         labelList = new ArrayList<>();
@@ -76,25 +95,5 @@ public class ForthScene {
                 e.printStackTrace();
             }
         });
-    }
-
-    public static void setNoOfHoles(int noOfHoles) {
-        ForthScene.noOfHoles = noOfHoles;
-    }
-
-    public static void getFromThird(Manager temp) {
-        manager = temp;
-    }
-
-    public static void getActiveStage(Stage temp) {
-        window = temp;
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene4.fxml"));
-        window.setTitle("Forth Scene");
-        window.setScene(new Scene(root, 800, 600));
-        FifthScene.getActiveStage(window);
-        window.show();
     }
 }

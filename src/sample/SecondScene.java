@@ -34,17 +34,29 @@ public class SecondScene {
     @FXML
     Button nextBTN;
 
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene2.fxml"));
+        window.setTitle("Second Scene");
+        window.setScene(new Scene(root, 600, 300));
+        ThirdScene.getActiveStage(window);
+        window.show();
+    }
+
+    public static void getFromFirst(Manager temp, int noPro) {
+        manager = temp;
+        noprocesses = noPro;
+    }
+
+    public static void getActiveStage(Stage temp) {
+        window = temp;
+    }
 
     public void initialize() {
         temp = new ArrayList<>();
         processInfoBTN.setDisable(true);
         processInfoOUT.setText("Process " + count + " no of segments : ");
-        processInfoIN.setOnKeyReleased(event -> {
-            processInfoBTN.setDisable(processInfoIN.getText().isEmpty());
-        });
-        processInfoBTN.setOnAction(event -> {
-            processInfoIN.setDisable(true);
-        });
+        processInfoIN.setOnKeyReleased(event -> processInfoBTN.setDisable(processInfoIN.getText().isEmpty()));
+        processInfoBTN.setOnAction(event -> processInfoIN.setDisable(true));
         nextBTN.setOnAction(event -> {
             Pair<Integer, Integer> pair = new Pair<>(count, Integer.parseInt(processInfoIN.getText()));
             temp.add(pair);
@@ -66,24 +78,6 @@ public class SecondScene {
                 processInfoOUT.setText("Process " + count + " no of segments : ");
             }
         });
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene2.fxml"));
-        window.setTitle("Second Scene");
-        window.setScene(new Scene(root, 600, 300));
-        ThirdScene.getActiveStage(window);
-        window.show();
-    }
-
-
-    public static void getFromFirst(Manager temp, int noPro) {
-        manager = temp;
-        noprocesses = noPro;
-    }
-
-    public static void getActiveStage(Stage temp) {
-        window = temp;
     }
 
 }

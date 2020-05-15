@@ -8,7 +8,7 @@
     <update check="background"/>
     <resources>
         <j2se version="10.0.1+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="MemoryManager.jar" size="38346" download="eager"/>
+        <jar href="MemoryManager.jar" size="38193" download="eager"/>
     </resources>
     <jfx:javafx-desc width="600" height="400" main-class="sample.Main" name="Main"/>
 </jnlp>

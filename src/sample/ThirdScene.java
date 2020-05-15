@@ -53,6 +53,18 @@ public class ThirdScene {
         window = temp;
     }
 
+    public static void getFromSecond(Manager temp, ArrayList<Pair<Integer, Integer>> tempPro) {
+        manager = temp;
+        processes = tempPro;
+    }
+
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene3.fxml"));
+        window.setTitle("Third Scene");
+        window.setScene(new Scene(root, 800, 600));
+        ForthScene.getActiveStage(window);
+        window.show();
+    }
 
     public void initialize() {
         firstFit.setDisable(true);
@@ -113,18 +125,5 @@ public class ThirdScene {
         sizeLayout.getChildren().clear();
         sizeLayout.getChildren().addAll(sizeList);
         count++;
-    }
-
-    public static void getFromSecond(Manager temp, ArrayList<Pair<Integer, Integer>> tempPro) {
-        manager = temp;
-        processes = tempPro;
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene3.fxml"));
-        window.setTitle("Third Scene");
-        window.setScene(new Scene(root, 800, 600));
-        ForthScene.getActiveStage(window);
-        window.show();
     }
 }

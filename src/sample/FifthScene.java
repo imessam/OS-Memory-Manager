@@ -39,6 +39,23 @@ public class FifthScene {
     Process process;
     int oldSize;
 
+    public static void getFromForth(Manager temp) {
+        manager = temp;
+    }
+
+    public static void getActiveStage(Stage temp) {
+        window = temp;
+    }
+
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene5.fxml"));
+        window.setTitle("Fifth Scene");
+        window.setScene(new Scene(root, 800, 600));
+        TableScene.getActiveStage(window);
+        MemoryScene.getActiveStage(window);
+        AddProcessScene.getActiveStage(window);
+        window.show();
+    }
 
     public void initialize() {
         refreshButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("refresh.png"))));
@@ -162,25 +179,6 @@ public class FifthScene {
         processAllocated.getItems().clear();
         processAllocated.getItems().addAll(allocation);
 
-    }
-
-
-    public static void getFromForth(Manager temp) {
-        manager = temp;
-    }
-
-    public static void getActiveStage(Stage temp) {
-        window = temp;
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("scene5.fxml"));
-        window.setTitle("Fifth Scene");
-        window.setScene(new Scene(root, 800, 600));
-        TableScene.getActiveStage(window);
-        MemoryScene.getActiveStage(window);
-        AddProcessScene.getActiveStage(window);
-        window.show();
     }
 }
 

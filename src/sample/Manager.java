@@ -15,18 +15,12 @@ import java.util.TreeMap;
 public class Manager {
 
     private int memorySize, count;
-
-    public ArrayList<Process> getProcesses() {
-        return processes;
-    }
-
     //private ArrayList<Map<String, Pair<Integer, Integer>>> processes;
-    private ArrayList<Process> processes;
+    private final ArrayList<Process> processes;
     private Map<Integer, Pair<String, Integer>> holes;
-    private Map<Integer, Pair<String, Integer>> reserved;
-    private Map<Integer, Pair<String, Integer>> memory;
+    private final Map<Integer, Pair<String, Integer>> reserved;
+    private final Map<Integer, Pair<String, Integer>> memory;
     private boolean method; //true : First Fit , false : Best Fit.
-
 
     public Manager() {
         count = 1;
@@ -34,6 +28,10 @@ public class Manager {
         holes = new TreeMap<>();
         reserved = new TreeMap<>();
         memory = new TreeMap<>();
+    }
+
+    public ArrayList<Process> getProcesses() {
+        return processes;
     }
 
     public boolean getMethod() {
@@ -116,7 +114,7 @@ public class Manager {
         Map<Integer, Pair<String, Integer>> oldHoles = new TreeMap<>(holes);
 
         Pair<Integer, Integer> tempBest;
-        int diff = -1;
+        int diff;
         boolean isAllocated = true;
         for (String segmentName :
                 tempSegments.keySet()) {

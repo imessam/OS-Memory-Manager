@@ -13,7 +13,7 @@ import java.util.Map;
 public class Process {
     private Map<String, Pair<Integer, Integer>> segments;
     private boolean allocated;
-    private int processNumber;
+    private final int processNumber;
     private Color color;
 
 

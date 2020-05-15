@@ -45,6 +45,21 @@ public class AddProcessScene2 {
     @FXML
     ColorPicker colorPicker;
 
+    public static void getFromLast(Manager temp, Pair<Integer, Integer> tempPair) {
+        manager = temp;
+        process = tempPair;
+    }
+
+    public static void getActiveStage(Stage temp) {
+        window = temp;
+    }
+
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("addProcessScene2.fxml"));
+        window.setTitle("Add Process");
+        window.setScene(new Scene(root, 800, 600));
+        window.show();
+    }
 
     public void initialize() {
         nextBTN.setDisable(true);
@@ -54,7 +69,6 @@ public class AddProcessScene2 {
         sizeLayout.setSpacing(20);
         addControls();
     }
-
 
     private void addControls() {
         for (int j = 0; j < process.getValue(); j++) {
@@ -78,25 +92,6 @@ public class AddProcessScene2 {
 
         });
 
-        nextBTN.setOnAction(event1 -> {
-            window.close();
-        });
-    }
-
-
-    public static void getFromLast(Manager temp, Pair<Integer, Integer> tempPair) {
-        manager = temp;
-        process = tempPair;
-    }
-
-    public static void getActiveStage(Stage temp) {
-        window = temp;
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("addProcessScene2.fxml"));
-        window.setTitle("Add Process");
-        window.setScene(new Scene(root, 800, 600));
-        window.show();
+        nextBTN.setOnAction(event1 -> window.close());
     }
 }

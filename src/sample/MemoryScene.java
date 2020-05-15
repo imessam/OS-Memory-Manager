@@ -31,6 +31,22 @@ public class MemoryScene {
     @FXML
     VBox allocatedLayout;
 
+    public static void getFromFifth(Manager temp) {
+        manager = temp;
+    }
+
+    public static void getActiveStage(Stage temp) {
+        window = temp;
+    }
+
+    public static void display() throws IOException {
+        Parent root = FXMLLoader.load(SecondScene.class.getResource("memoryScene.fxml"));
+        memoryWindow = new Stage();
+        memoryWindow.initModality(Modality.APPLICATION_MODAL);
+        memoryWindow.setTitle("Memory Scene");
+        memoryWindow.setScene(new Scene(root, 800, 600));
+        memoryWindow.showAndWait();
+    }
 
     public void initialize() {
         Label tempLabel2;
@@ -89,22 +105,5 @@ public class MemoryScene {
         locationLayout.getChildren().clear();
         allocatedLayout.getChildren().clear();
         initialize();
-    }
-
-    public static void getFromFifth(Manager temp) {
-        manager = temp;
-    }
-
-    public static void getActiveStage(Stage temp) {
-        window = temp;
-    }
-
-    public static void display() throws IOException {
-        Parent root = FXMLLoader.load(SecondScene.class.getResource("memoryScene.fxml"));
-        memoryWindow = new Stage();
-        memoryWindow.initModality(Modality.APPLICATION_MODAL);
-        memoryWindow.setTitle("Memory Scene");
-        memoryWindow.setScene(new Scene(root, 800, 600));
-        memoryWindow.showAndWait();
     }
 }

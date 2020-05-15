@@ -34,24 +34,6 @@ public class TableScene {
     List<Integer> limitList;
     List<Integer> baseAddressList;
 
-
-    public void initialize() {
-        segmentsName = new ArrayList<>();
-        limitList = new ArrayList<>();
-        baseAddressList = new ArrayList<>();
-        Map<String, Pair<Integer, Integer>> segments = process.getSegments();
-        for (String segment :
-                segments.keySet()) {
-            segmentsName.add(segment);
-            limitList.add(segments.get(segment).getKey());
-            baseAddressList.add(segments.get(segment).getValue());
-        }
-        segmentNumber.getItems().addAll(segmentsName);
-        limit.getItems().addAll(limitList);
-        baseAddress.getItems().addAll(baseAddressList);
-    }
-
-
     public static void getFromFifth(Process temp) {
         process = temp;
     }
@@ -67,6 +49,22 @@ public class TableScene {
         tableWindow.setTitle("Table Scene");
         tableWindow.setScene(new Scene(root, 800, 600));
         tableWindow.showAndWait();
+    }
+
+    public void initialize() {
+        segmentsName = new ArrayList<>();
+        limitList = new ArrayList<>();
+        baseAddressList = new ArrayList<>();
+        Map<String, Pair<Integer, Integer>> segments = process.getSegments();
+        for (String segment :
+                segments.keySet()) {
+            segmentsName.add(segment);
+            limitList.add(segments.get(segment).getKey());
+            baseAddressList.add(segments.get(segment).getValue());
+        }
+        segmentNumber.getItems().addAll(segmentsName);
+        limit.getItems().addAll(limitList);
+        baseAddress.getItems().addAll(baseAddressList);
     }
 }
 

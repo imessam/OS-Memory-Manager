@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <!--
   ~ Copyright (c) 2020. Mohamed Essam Abdelfattah
   -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="sample.ThirdScene">
     <center>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox fx:id="labelLayout" prefHeight="375.0" prefWidth="155.0">
-                    <HBox.margin>
-                        <Insets left="10.0" top="10.0"/>
-                    </HBox.margin>
-                </VBox>
-                <VBox fx:id="nameLayout" prefHeight="375.0" prefWidth="166.0">
-                    <HBox.margin>
-                        <Insets left="20.0" top="10.0"/>
-                    </HBox.margin>
-                </VBox>
-                <VBox fx:id="sizeLayout" prefHeight="375.0" prefWidth="175.0">
-                    <HBox.margin>
-                        <Insets left="20.0" top="10.0"/>
-                    </HBox.margin>
-                </VBox>
-            </children>
+            <VBox fx:id="labelLayout" prefHeight="375.0" prefWidth="155.0">
+                <HBox.margin>
+                    <Insets left="10.0" top="10.0"/>
+                </HBox.margin>
+            </VBox>
+            <VBox fx:id="nameLayout" prefHeight="375.0" prefWidth="166.0">
+                <HBox.margin>
+                    <Insets left="20.0" top="10.0"/>
+                </HBox.margin>
+            </VBox>
+            <VBox fx:id="sizeLayout" prefHeight="375.0" prefWidth="175.0">
+                <HBox.margin>
+                    <Insets left="20.0" top="10.0"/>
+                </HBox.margin>
+            </VBox>
         </HBox>
     </center>
     <bottom>
@@ -42,12 +41,10 @@
                 <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <Button fx:id="okBTN" mnemonicParsing="false" prefHeight="53.0" prefWidth="300.0" text="OK"
-                        GridPane.rowIndex="1"/>
-                <Button fx:id="nextBTN" mnemonicParsing="false" prefHeight="53.0" prefWidth="300.0" text="Next"
-                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            </children>
+            <Button fx:id="okBTN" mnemonicParsing="false" prefHeight="53.0" prefWidth="300.0" text="OK"
+                    GridPane.rowIndex="1"/>
+            <Button fx:id="nextBTN" mnemonicParsing="false" prefHeight="53.0" prefWidth="300.0" text="Next"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         </GridPane>
     </bottom>
     <right>
@@ -61,21 +58,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <RadioButton fx:id="firstFit" mnemonicParsing="false" text="First Fit" GridPane.columnIndex="1"
-                             GridPane.rowIndex="1">
-                    <toggleGroup>
-                        <ToggleGroup fx:id="toggleGroup1"/>
-                    </toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="bestFit" mnemonicParsing="false" text="Best Fit" toggleGroup="$toggleGroup1"
-                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <ColorPicker fx:id="colorPicker" GridPane.columnIndex="1">
-                    <GridPane.margin>
-                        <Insets right="10.0"/>
-                    </GridPane.margin>
-                </ColorPicker>
-            </children>
+            <RadioButton fx:id="firstFit" mnemonicParsing="false" text="First Fit" GridPane.columnIndex="1"
+                         GridPane.rowIndex="1">
+                <toggleGroup>
+                    <ToggleGroup fx:id="toggleGroup1"/>
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="bestFit" mnemonicParsing="false" text="Best Fit" toggleGroup="$toggleGroup1"
+                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ColorPicker fx:id="colorPicker" GridPane.columnIndex="1">
+                <GridPane.margin>
+                    <Insets right="10.0"/>
+                </GridPane.margin>
+            </ColorPicker>
         </GridPane>
     </right>
 </BorderPane>

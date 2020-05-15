@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
 <!--
   ~ Copyright (c) 2020. Mohamed Essam Abdelfattah
   -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="sample.TableScene">
    <center>
       <SplitPane dividerPositions="0.3644366197183099, 0.7095070422535211" prefHeight="200.0" prefWidth="200.0"
@@ -17,26 +18,18 @@
          <BorderPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
          </BorderPane.margin>
-         <items>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-               <items>
-                  <Label text="Segment"/>
-                  <ListView fx:id="segmentNumber" prefHeight="200.0" prefWidth="200.0"/>
-               </items>
-            </SplitPane>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-               <items>
-                  <Label text="Limit"/>
-                  <ListView fx:id="limit" prefHeight="200.0" prefWidth="200.0"/>
-               </items>
-            </SplitPane>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-               <items>
-                  <Label text="Base Address"/>
-                  <ListView fx:id="baseAddress" prefHeight="200.0" prefWidth="200.0"/>
-               </items>
-            </SplitPane>
-         </items>
+         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <Label text="Segment"/>
+            <ListView fx:id="segmentNumber" prefHeight="200.0" prefWidth="200.0"/>
+         </SplitPane>
+         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <Label text="Limit"/>
+            <ListView fx:id="limit" prefHeight="200.0" prefWidth="200.0"/>
+         </SplitPane>
+         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <Label text="Base Address"/>
+            <ListView fx:id="baseAddress" prefHeight="200.0" prefWidth="200.0"/>
+         </SplitPane>
       </SplitPane>
    </center>
 </BorderPane>

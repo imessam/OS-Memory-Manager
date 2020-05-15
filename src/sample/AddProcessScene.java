@@ -31,29 +31,6 @@ public class AddProcessScene {
     @FXML
     Button nextBTN;
 
-
-    public void initialize() {
-        int processnumber = (manager.getProcesses().size()) + 1;
-        processInfoOUT.setText("Process " + processnumber + " no of segments : ");
-
-        processInfoIN.setOnKeyReleased(event -> {
-            processInfoBTN.setDisable(processInfoIN.getText().isEmpty());
-        });
-        processInfoBTN.setOnAction(event -> {
-            processInfoIN.setDisable(true);
-        });
-        nextBTN.setOnAction(event -> {
-            Pair<Integer, Integer> pair = new Pair<>(manager.getProcesses().size(), Integer.parseInt(processInfoIN.getText()));
-            processInfoIN.setDisable(false);
-            AddProcessScene2.getFromLast(manager, pair);
-            try {
-                AddProcessScene2.display();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
     public static void getFromFifth(Manager temp) {
         manager = temp;
     }
@@ -70,5 +47,23 @@ public class AddProcessScene {
         addProcessWindow.setScene(new Scene(root, 800, 600));
         AddProcessScene2.getActiveStage(addProcessWindow);
         addProcessWindow.showAndWait();
+    }
+
+    public void initialize() {
+        int processnumber = (manager.getProcesses().size()) + 1;
+        processInfoOUT.setText("Process " + processnumber + " no of segments : ");
+
+        processInfoIN.setOnKeyReleased(event -> processInfoBTN.setDisable(processInfoIN.getText().isEmpty()));
+        processInfoBTN.setOnAction(event -> processInfoIN.setDisable(true));
+        nextBTN.setOnAction(event -> {
+            Pair<Integer, Integer> pair = new Pair<>(manager.getProcesses().size(), Integer.parseInt(processInfoIN.getText()));
+            processInfoIN.setDisable(false);
+            AddProcessScene2.getFromLast(manager, pair);
+            try {
+                AddProcessScene2.display();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

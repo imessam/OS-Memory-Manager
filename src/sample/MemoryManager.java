@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 
 public class MemoryManager extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
@@ -19,9 +23,5 @@ public class MemoryManager extends Application {
         primaryStage.setScene(new Scene(root, 600, 400));
         SecondScene.getActiveStage(primaryStage);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
