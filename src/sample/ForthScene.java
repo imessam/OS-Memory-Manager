@@ -51,7 +51,7 @@ public class ForthScene {
 
     public static void display() throws IOException {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("scene4.fxml"));
-        window.setTitle("Forth Scene");
+        window.setTitle("Holes size and location");
         window.setScene(new Scene(root, 800, 600));
         FifthScene.getActiveStage(window);
         window.show();
@@ -84,10 +84,7 @@ public class ForthScene {
             }
         });
         nextBTN.setOnAction(event -> {
-//            manager.printHoles();
             manager.fillReserves();
-//            manager.printReserves();
-
             FifthScene.getFromForth(manager);
             try {
                 FifthScene.display();

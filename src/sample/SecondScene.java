@@ -36,7 +36,7 @@ public class SecondScene {
 
     public static void display() throws IOException {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("scene2.fxml"));
-        window.setTitle("Second Scene");
+        window.setTitle("Processes number of segments");
         window.setScene(new Scene(root, 600, 300));
         ThirdScene.getActiveStage(window);
         window.show();
@@ -63,9 +63,6 @@ public class SecondScene {
             count++;
             processInfoIN.setDisable(false);
             if (count > noprocesses) {
-//                for (Pair<Integer, Integer> integerIntegerPair : temp) {
-//                    System.out.println(integerIntegerPair.getKey() + " : " + integerIntegerPair.getValue());
-//                }
                 nextBTN.setDisable(true);
                 ThirdScene.getFromSecond(manager, temp);
                 try {
@@ -73,7 +70,6 @@ public class SecondScene {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             } else {
                 processInfoOUT.setText("Process " + count + " no of segments : ");
             }

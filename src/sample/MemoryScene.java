@@ -43,7 +43,7 @@ public class MemoryScene {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("memoryScene.fxml"));
         memoryWindow = new Stage();
         memoryWindow.initModality(Modality.APPLICATION_MODAL);
-        memoryWindow.setTitle("Memory Scene");
+        memoryWindow.setTitle("Memory Layout");
         memoryWindow.setScene(new Scene(root, 800, 600));
         memoryWindow.showAndWait();
     }
@@ -54,33 +54,27 @@ public class MemoryScene {
         int count = 10;
         double multiplier = 200.0 / (double) manager.getMemorySize();
         Process process;
-
         tempLabel2 = new Label(String.valueOf(0));
         tempLabel2.setAlignment(Pos.BOTTOM_RIGHT);
         tempLabel2.setPadding(new Insets(0, 0, 0, 80));
         locationLayout.getChildren().add(tempLabel2);
         manager.fillMemory();
-        manager.printMemory();
         Map<Integer, Pair<String, Integer>> memory = manager.getMemory();
+
         for (int address :
                 memory.keySet()) {
             tempLabel2 = new Label(String.valueOf(address + memory.get(address).getValue()));
             tempLabel2.setAlignment(Pos.BOTTOM_RIGHT);
             tempLabel2.setPadding(new Insets(memory.get(address).getValue() * multiplier, 0, 0, 80));
-
             tempButton = new Button(memory.get(address).getKey());
-            // tempButton.setStyle("-fx-colo: #f00000");
-
             if (memory.get(address).getKey().charAt(1) == ':') {
                 process = manager.getProcesses().get(Integer.parseInt(memory.get(address).getKey().substring(0, 1)));
                 tempButton.setStyle("-fx-background-color: " + process.getColor().substring(2));
-
             }
             tempButton.setPadding(new Insets((memory.get(address).getValue() + count) * multiplier, 0, 0, 100));
-            //tempButton.setDisable(true);
             tempButton.setAlignment(Pos.BOTTOM_CENTER);
-            //tempButton.setId(String.valueOf(address));
             Button finalTempButton = tempButton;
+
             tempButton.setOnMouseClicked(event -> {
                 MouseButton mouseButton = event.getButton();
                 if (mouseButton == MouseButton.PRIMARY) {
@@ -89,7 +83,6 @@ public class MemoryScene {
                         manager.deallocateSegment(new Pair<>(finalTempButton.getText(), address));
                         refreshScene();
                     }
-
                 }
             });
 
@@ -97,8 +90,6 @@ public class MemoryScene {
             allocatedLayout.getChildren().add(tempButton);
             count = 0;
         }
-
-
     }
 
     private void refreshScene() {

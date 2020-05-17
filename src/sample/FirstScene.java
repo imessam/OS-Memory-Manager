@@ -41,15 +41,9 @@ public class FirstScene {
         memorySizeBTN.setDisable(true);
         noOfProcessesBTN.setDisable(true);
         noOfHolesBTN.setDisable(true);
-        memorySizeIN.setOnKeyReleased(e -> {
-            memorySizeBTN.setDisable(memorySizeIN.getText().isEmpty());
-        });
-        noOfProcessesIN.setOnKeyReleased(e -> {
-            noOfProcessesBTN.setDisable(noOfProcessesIN.getText().isEmpty());
-        });
-        noOfHolesIN.setOnKeyReleased(event -> {
-            noOfHolesBTN.setDisable(noOfHolesIN.getText().isEmpty());
-        });
+        memorySizeIN.setOnKeyReleased(e -> memorySizeBTN.setDisable(memorySizeIN.getText().isEmpty()));
+        noOfProcessesIN.setOnKeyReleased(e -> noOfProcessesBTN.setDisable(noOfProcessesIN.getText().isEmpty()));
+        noOfHolesIN.setOnKeyReleased(event -> noOfHolesBTN.setDisable(noOfHolesIN.getText().isEmpty()));
         memorySizeBTN.setOnAction(event -> {
             memorySizeIN.setDisable(true);
             manager.setMemorySize(Integer.parseInt(memorySizeIN.getText()));

@@ -50,9 +50,8 @@ public class AddProcessScene {
     }
 
     public void initialize() {
-        int processnumber = (manager.getProcesses().size()) + 1;
-        processInfoOUT.setText("Process " + processnumber + " no of segments : ");
-
+        int processNumber = (manager.getProcesses().size()) + 1;
+        processInfoOUT.setText("Process " + processNumber + " no of segments : ");
         processInfoIN.setOnKeyReleased(event -> processInfoBTN.setDisable(processInfoIN.getText().isEmpty()));
         processInfoBTN.setOnAction(event -> processInfoIN.setDisable(true));
         nextBTN.setOnAction(event -> {

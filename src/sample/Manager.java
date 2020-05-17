@@ -15,7 +15,6 @@ import java.util.TreeMap;
 public class Manager {
 
     private int memorySize, count;
-    //private ArrayList<Map<String, Pair<Integer, Integer>>> processes;
     private final ArrayList<Process> processes;
     private Map<Integer, Pair<String, Integer>> holes;
     private final Map<Integer, Pair<String, Integer>> reserved;
@@ -32,10 +31,6 @@ public class Manager {
 
     public ArrayList<Process> getProcesses() {
         return processes;
-    }
-
-    public boolean getMethod() {
-        return method;
     }
 
     public void setMethod(boolean method) {
@@ -91,10 +86,6 @@ public class Manager {
         }
     }
 
-    public Map<Integer, Pair<String, Integer>> getMemory() {
-        return memory;
-    }
-
     public void fillMemory() {
         memory.clear();
         for (int hole :
@@ -105,6 +96,10 @@ public class Manager {
                 reserved.keySet()) {
             memory.put(reserve, new Pair<>(reserved.get(reserve).getKey(), reserved.get(reserve).getValue()));
         }
+    }
+
+    public Map<Integer, Pair<String, Integer>> getMemory() {
+        return memory;
     }
 
     public boolean allocateProcess(int processNumber) {
@@ -119,11 +114,9 @@ public class Manager {
         for (String segmentName :
                 tempSegments.keySet()) {
             tempBest = new Pair<>(memorySize, -1);
-            printHoles(tempHoles);
             for (int address :
                     tempHoles.keySet()) {
                 diff = tempHoles.get(address).getValue() - tempSegments.get(segmentName).getKey();
-                //UNDOOOO
                 if ((diff >= 0) && (tempHoles.get(address).getKey().equals("hole"))) {
                     if (method) {
                         tempBest = new Pair<>(diff, address);
@@ -140,11 +133,9 @@ public class Manager {
 
 
             }
-            System.out.println("Putting " + (processNumber + ":" + segmentName) + " at " + tempBest.getValue() + " size is " + tempSegments.get(segmentName).getKey());
             tempHoles.put(tempBest.getValue(), new Pair<>(processNumber + ":" + segmentName, tempSegments.get(segmentName).getKey()));
             process.addSegment(segmentName, tempSegments.get(segmentName).getKey(), tempBest.getValue());
             if (tempBest.getKey() != 0) {
-                System.out.println("Putting hole at " + (tempBest.getValue() + tempSegments.get(segmentName).getKey()) + " size is " + tempBest.getKey());
                 tempHoles.put(tempBest.getValue() + (tempSegments.get(segmentName).getKey()), new Pair<>("hole", tempBest.getKey()));
             }
         }
@@ -154,9 +145,6 @@ public class Manager {
                 isAllocated = false;
                 process.setSegments(tempSegments);
                 holes = oldHoles;
-                System.out.println("ERRRRORRRR");
-                printHoles();
-
                 break;
             } else {
                 holes = tempHoles;
@@ -234,52 +222,6 @@ public class Manager {
         }
     }
 
-    public void printProcesses() {
-        for (Process process : processes) {
-            System.out.println("For processes : " + process.getProcessNumber());
-            for (String s :
-                    process.getSegments().keySet()) {
-                System.out.println("Segment " + s + " size is : " + process.getSegments().get(s).getKey() + " and located at : " + process.getSegments().get(s)
-                        .getValue());
-            }
-        }
-
-    }
-
-    public void printHoles() {
-        System.out.println("***********************************************************");
-        for (int address : holes.keySet()
-        ) {
-            System.out.println("Hole at address " + address + " size is " + holes.get(address));
-        }
-        System.out.println("***********************************************************");
-
-    }
-
-    public void printHoles(Map<Integer, Pair<String, Integer>> tempHoles) {
-        System.out.println("***********************************************************");
-        for (int address : tempHoles.keySet()
-        ) {
-            System.out.println("Hole at address " + address + " size is " + tempHoles.get(address));
-        }
-        System.out.println("***********************************************************");
-    }
-
-    public void printReserves() {
-        for (int address : reserved.keySet()
-        ) {
-            System.out.println("Reserve at address " + address + " size is " + reserved.get(address));
-        }
-    }
-
-    public void printMemory() {
-        for (int address :
-                memory.keySet()) {
-            System.out.println(memory.get(address).getKey() + " at address " + address + " size is " + memory.get(address).getValue());
-        }
-        System.out.println("=========================================================================================" +
-                "\n======================================================================");
-    }
 
 
 }

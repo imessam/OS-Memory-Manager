@@ -46,7 +46,7 @@ public class TableScene {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("tableScene.fxml"));
         tableWindow = new Stage();
         tableWindow.initModality(Modality.APPLICATION_MODAL);
-        tableWindow.setTitle("Table Scene");
+        tableWindow.setTitle("Process Table");
         tableWindow.setScene(new Scene(root, 800, 600));
         tableWindow.showAndWait();
     }

@@ -22,6 +22,12 @@ public class FifthScene {
 
     static Manager manager;
     static Stage window;
+    List<String> processes;
+    List<String> allocation;
+    String s;
+    Process process;
+    int oldSize;
+
     @FXML
     ListView<String> processName;
     @FXML
@@ -33,11 +39,7 @@ public class FifthScene {
     @FXML
     Button refreshButton;
 
-    List<String> processes;
-    List<String> allocation;
-    String s;
-    Process process;
-    int oldSize;
+
 
     public static void getFromForth(Manager temp) {
         manager = temp;
@@ -49,7 +51,7 @@ public class FifthScene {
 
     public static void display() throws IOException {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("scene5.fxml"));
-        window.setTitle("Fifth Scene");
+        window.setTitle("Home");
         window.setScene(new Scene(root, 800, 600));
         TableScene.getActiveStage(window);
         MemoryScene.getActiveStage(window);
@@ -63,6 +65,7 @@ public class FifthScene {
         allocation = new ArrayList<>();
         ArrayList<Process> temp = manager.getProcesses();
         oldSize = manager.getProcesses().size();
+
         for (Process process : temp) {
             processes.add("Process " + process.getProcessNumber());
             if (process.isAllocated()) {
@@ -71,35 +74,31 @@ public class FifthScene {
                 allocation.add("Not allocated");
             }
         }
+
         processName.getItems().addAll(processes);
+
         processAllocated.getItems().addAll(allocation);
+
         processName.setCellFactory(e -> {
             ListCell<String> cell = new ListCell<>();
-
             ContextMenu contextMenu = new ContextMenu();
-
-
             MenuItem allocateProcess = new MenuItem();
             MenuItem deallocateProcess = new MenuItem();
             MenuItem showTable = new MenuItem();
+
             allocateProcess.textProperty().bind(Bindings.format("Allocate \"%s\"", cell.itemProperty()));
             allocateProcess.setOnAction(event -> {
                 s = cell.itemProperty().get();
                 s = s.substring(s.length() - 1);
-
                 if (manager.allocateProcess(Integer.parseInt(s) - 1)) {
                     allocation.set(Integer.parseInt(s) - 1, "Allocated");
-                    processAllocated.getItems().clear();
-                    processAllocated.getItems().addAll(allocation);
                 } else {
                     allocation.set(Integer.parseInt(s) - 1, "Cannot be allocated");
-                    processAllocated.getItems().clear();
-                    processAllocated.getItems().addAll(allocation);
-
                 }
-
-
+                processAllocated.getItems().clear();
+                processAllocated.getItems().addAll(allocation);
             });
+
             deallocateProcess.textProperty().bind(Bindings.format("Deallocate \"%s\"", cell.itemProperty()));
             deallocateProcess.setOnAction(event -> {
                 s = cell.itemProperty().get();
@@ -109,6 +108,7 @@ public class FifthScene {
                 processAllocated.getItems().clear();
                 processAllocated.getItems().addAll(allocation);
             });
+
             showTable.textProperty().bind(Bindings.format("Show \"%s\" table", cell.itemProperty()));
             showTable.setOnAction(event -> {
                 try {
@@ -122,8 +122,8 @@ public class FifthScene {
                 }
 
             });
-            contextMenu.getItems().addAll(allocateProcess, deallocateProcess, showTable);
 
+            contextMenu.getItems().addAll(allocateProcess, deallocateProcess, showTable);
             cell.textProperty().bind(cell.itemProperty());
 
             cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
@@ -144,8 +144,8 @@ public class FifthScene {
                 e.printStackTrace();
             }
         });
-        addProcessBTN.setOnAction(event -> {
 
+        addProcessBTN.setOnAction(event -> {
             AddProcessScene.getFromFifth(manager);
             try {
                 AddProcessScene.display();
@@ -164,11 +164,11 @@ public class FifthScene {
             processName.getItems().add(processes.get(processes.size() - 1));
             processAllocated.getItems().add(allocation.get(allocation.size() - 1));
         });
+
         refreshButton.setOnAction(event -> {
             for (int i = 0; i < processAllocated.getItems().size(); i++) {
                 if (!manager.getProcesses().get(i).checkAllocated()) {
                     modifyAllocation(i);
-
                 }
             }
         });

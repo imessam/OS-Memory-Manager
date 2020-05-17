@@ -60,7 +60,7 @@ public class ThirdScene {
 
     public static void display() throws IOException {
         Parent root = FXMLLoader.load(SecondScene.class.getResource("scene3.fxml"));
-        window.setTitle("Third Scene");
+        window.setTitle("Process segments size and color");
         window.setScene(new Scene(root, 800, 600));
         ForthScene.getActiveStage(window);
         window.show();
@@ -72,8 +72,8 @@ public class ThirdScene {
         nextBTN.setDisable(true);
         segments = new HashMap<>();
         labelLayout.setSpacing(30);
-        nameLayout.setSpacing(20);
-        sizeLayout.setSpacing(20);
+        nameLayout.setSpacing(50);
+        sizeLayout.setSpacing(50);
         addControls();
         okBTN.setOnAction(event -> {
             for (int i = 0; i < nameList.size(); i++) {
@@ -86,7 +86,6 @@ public class ThirdScene {
                 nextBTN.setDisable(false);
                 firstFit.setDisable(false);
                 bestFit.setDisable(false);
-                //manager.printProcesses();
             } else {
 
                 labelList.clear();
@@ -97,10 +96,8 @@ public class ThirdScene {
         });
         nextBTN.setOnAction(event -> {
             if (firstFit.isSelected()) {
-                System.out.println("First Fit");
                 manager.setMethod(true);
             } else if (bestFit.isSelected()) {
-                System.out.println("Best Fit");
                 manager.setMethod(false);
             }
             ForthScene.getFromThird(manager);
