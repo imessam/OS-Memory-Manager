@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+   static Stage stage;
 
 
     public static void main(String[] args) {
@@ -23,6 +24,7 @@ public class Main extends Application {
         primaryStage.setTitle("Memory Manager");
         primaryStage.setScene(new Scene(root, 600, 400));
         SecondScene.getActiveStage(primaryStage);
+        stage = primaryStage;
         primaryStage.show();
     }
 }

@@ -178,7 +178,7 @@ public class Manager {
         process.setAllocated(false);
     }
 
-    public void deallocateSegment(Pair<String, Integer> segment) {
+    public void deallocateSegment(Pair<String, Integer> segment, Process process) {
 
         if (segment.getKey().equals("reserve")) {
             holes.put(segment.getValue(), new Pair<>("hole", reserved.get(segment.getValue()).getValue()));
@@ -186,10 +186,13 @@ public class Manager {
         } else if (segment.getKey().equals("hole")) {
             System.out.println("Cannot deallocate a hole");
         } else {
-            String processSegment;
-            int processNumber, i = segment.getKey().indexOf(':');
-            processNumber = Integer.parseInt(segment.getKey().substring(0, i));
-            processSegment = segment.getKey().substring(i + 1);
+            String processSegment = segment.getKey();
+            int processNumber = process.getProcessNumber() - 1, i;
+            if (segment.getKey().contains(":")) {
+                i = segment.getKey().indexOf(':');
+                processNumber = Integer.parseInt(segment.getKey().substring(0, i));
+                processSegment = segment.getKey().substring(i + 1);
+            }
             holes.put(segment.getValue(), new Pair<>("hole", holes.get(segment.getValue()).getValue()));
             processes.get(processNumber).getSegments().put(processSegment, new Pair<>(holes.get(segment.getValue()).getValue(), -1));
         }

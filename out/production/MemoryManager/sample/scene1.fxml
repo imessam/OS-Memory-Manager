@@ -7,17 +7,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
       fx:controller="sample.FirstScene">
    <Label fx:id="memorySize" layoutX="44.0" layoutY="59.0" text="Memory Size :"/>
-   <Label fx:id="noOfProcesses" layoutX="44.0" layoutY="133.0" text="NO,Processes :"/>
+   <Label fx:id="noOfProcesses" layoutX="44.0" layoutY="133.0" text="NO. Processes :"/>
    <TextField fx:id="memorySizeIN" layoutX="151.0" layoutY="55.0"/>
    <TextField fx:id="noOfProcessesIN" layoutX="151.0" layoutY="129.0"/>
    <Button fx:id="memorySizeBTN" layoutX="357.0" layoutY="55.0" mnemonicParsing="false" text="Apply"/>
    <Button fx:id="noOfProcessesBTN" layoutX="357.0" layoutY="129.0" mnemonicParsing="false" text="Apply"/>
-   <Button fx:id="nextBTN" layoutX="232.0" layoutY="267.0" mnemonicParsing="false" prefHeight="47.0"
-           prefWidth="136.0" text="Next"/>
+   <Button fx:id="nextBTN" layoutX="232.0" layoutY="267.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="136.0"
+           text="Next"/>
    <Label fx:id="noOfHoles" layoutX="44.0" layoutY="205.0" prefHeight="17.0" prefWidth="78.0" text="NO. Holes :"/>
    <TextField fx:id="noOfHolesIN" layoutX="151.0" layoutY="201.0"/>
    <Button fx:id="noOfHolesBTN" layoutX="357.0" layoutY="201.0" mnemonicParsing="false" text="Apply"/>

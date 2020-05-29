@@ -25,6 +25,8 @@ public class MemoryScene {
     static Stage memoryWindow;
     static Manager manager;
     static Stage window;
+    Process process;
+    boolean isProcess;
 
     @FXML
     VBox locationLayout;
@@ -51,9 +53,8 @@ public class MemoryScene {
     public void initialize() {
         Label tempLabel2;
         Button tempButton;
-        int count = 10;
+        int count = 10, index;
         double multiplier = 200.0 / (double) manager.getMemorySize();
-        Process process;
         tempLabel2 = new Label(String.valueOf(0));
         tempLabel2.setAlignment(Pos.BOTTOM_RIGHT);
         tempLabel2.setPadding(new Insets(0, 0, 0, 80));
@@ -63,28 +64,38 @@ public class MemoryScene {
 
         for (int address :
                 memory.keySet()) {
+            isProcess = false;
             tempLabel2 = new Label(String.valueOf(address + memory.get(address).getValue()));
             tempLabel2.setAlignment(Pos.BOTTOM_RIGHT);
             tempLabel2.setPadding(new Insets(memory.get(address).getValue() * multiplier, 0, 0, 80));
             tempButton = new Button(memory.get(address).getKey());
-            if (memory.get(address).getKey().charAt(1) == ':') {
-                process = manager.getProcesses().get(Integer.parseInt(memory.get(address).getKey().substring(0, 1)));
+            Button finalTempButton = tempButton;
+            if (memory.get(address).getKey().contains(":")) {
+                index = memory.get(address).getKey().indexOf(':');
+                process = manager.getProcesses().get(Integer.parseInt(memory.get(address).getKey().substring(0, index)));
                 tempButton.setStyle("-fx-background-color: " + process.getColor().substring(2));
+                tempButton.setOnMouseClicked(event -> {
+                    MouseButton mouseButton = event.getButton();
+                    if (mouseButton == MouseButton.PRIMARY) {
+                        if (event.getClickCount() == 2) {
+                            System.out.println("MOUSE : " + finalTempButton.getText() + " : " + address);
+                            Map<String, Pair<Integer, Integer>> segments = process.getSegments();
+                            for (String s :
+                                    segments.keySet()) {
+                                manager.deallocateSegment(new Pair<>(s, segments.get(s).getValue()), process);
+                                refreshScene();
+                            }
+                        }
+                    }
+                });
+            } else {
+                tempButton.setOnAction(event -> {
+                    manager.deallocateSegment(new Pair<>(finalTempButton.getText(), address), null);
+                    refreshScene();
+                });
             }
             tempButton.setPadding(new Insets((memory.get(address).getValue() + count) * multiplier, 0, 0, 100));
             tempButton.setAlignment(Pos.BOTTOM_CENTER);
-            Button finalTempButton = tempButton;
-
-            tempButton.setOnMouseClicked(event -> {
-                MouseButton mouseButton = event.getButton();
-                if (mouseButton == MouseButton.PRIMARY) {
-                    if (event.getClickCount() == 2) {
-                        System.out.println("MOUSE : " + finalTempButton.getText() + " : " + address);
-                        manager.deallocateSegment(new Pair<>(finalTempButton.getText(), address));
-                        refreshScene();
-                    }
-                }
-            });
 
             locationLayout.getChildren().add(tempLabel2);
             allocatedLayout.getChildren().add(tempButton);

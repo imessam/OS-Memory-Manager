@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="sample.FifthScene">
     <left>
         <SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="276.0" BorderPane.alignment="CENTER">
@@ -52,8 +51,18 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <Button fx:id="showMemoryBTN" mnemonicParsing="false" prefHeight="89.0" prefWidth="101.0"
-                    text="Show Memory" GridPane.rowIndex="2"/>
+            <Button fx:id="showMemoryBTN" mnemonicParsing="false" prefHeight="89.0" prefWidth="101.0" text="Show Memory"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets right="5.0"/>
+                </GridPane.margin>
+            </Button>
+            <Button fx:id="newBTN" mnemonicParsing="false" prefHeight="91.0" prefWidth="106.0" text="New"
+                    GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets right="5.0"/>
+                </GridPane.margin>
+            </Button>
         </GridPane>
     </right>
 </BorderPane>

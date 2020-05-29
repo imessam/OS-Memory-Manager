@@ -37,8 +37,9 @@ public class FifthScene {
     @FXML
     Button showMemoryBTN;
     @FXML
+    Button newBTN;
+    @FXML
     Button refreshButton;
-
 
 
     public static void getFromForth(Manager temp) {
@@ -141,6 +142,15 @@ public class FifthScene {
                 MemoryScene.getFromFifth(manager);
                 MemoryScene.display();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        newBTN.setOnAction(event -> {
+            Main main = new Main();
+            try {
+                main.start(window);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
