@@ -133,7 +133,7 @@ public class Manager {
 
 
             }
-            tempHoles.put(tempBest.getValue(), new Pair<>(processNumber + ":" + segmentName, tempSegments.get(segmentName).getKey()));
+            tempHoles.put(tempBest.getValue(), new Pair<>(process.getProcessNumber() + ":" + segmentName, tempSegments.get(segmentName).getKey()));
             process.addSegment(segmentName, tempSegments.get(segmentName).getKey(), tempBest.getValue());
             if (tempBest.getKey() != 0) {
                 tempHoles.put(tempBest.getValue() + (tempSegments.get(segmentName).getKey()), new Pair<>("hole", tempBest.getKey()));
@@ -178,7 +178,7 @@ public class Manager {
         process.setAllocated(false);
     }
 
-    public void deallocateSegment(Pair<String, Integer> segment, Process process) {
+    public void deallocateSegment(Pair<String, Integer> segment, int number) {
 
         if (segment.getKey().equals("reserve")) {
             holes.put(segment.getValue(), new Pair<>("hole", reserved.get(segment.getValue()).getValue()));
@@ -187,7 +187,7 @@ public class Manager {
             System.out.println("Cannot deallocate a hole");
         } else {
             String processSegment = segment.getKey();
-            int processNumber = process.getProcessNumber() - 1, i;
+            int processNumber = number - 1, i;
             if (segment.getKey().contains(":")) {
                 i = segment.getKey().indexOf(':');
                 processNumber = Integer.parseInt(segment.getKey().substring(0, i));

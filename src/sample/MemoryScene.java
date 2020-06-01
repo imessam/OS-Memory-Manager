@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryScene {
@@ -72,26 +73,33 @@ public class MemoryScene {
             Button finalTempButton = tempButton;
             if (memory.get(address).getKey().contains(":")) {
                 index = memory.get(address).getKey().indexOf(':');
-                process = manager.getProcesses().get(Integer.parseInt(memory.get(address).getKey().substring(0, index)));
+                process = manager.getProcesses().get(Integer.parseInt(memory.get(address).getKey().substring(0, index)) - 1);
                 tempButton.setStyle("-fx-background-color: " + process.getColor().substring(2));
+                Process finalTemp = process;
                 tempButton.setOnMouseClicked(event -> {
                     MouseButton mouseButton = event.getButton();
                     if (mouseButton == MouseButton.PRIMARY) {
                         if (event.getClickCount() == 2) {
-                            System.out.println("MOUSE : " + finalTempButton.getText() + " : " + address);
-                            Map<String, Pair<Integer, Integer>> segments = process.getSegments();
+                            System.out.println("MOUSE : " + finalTempButton.getText() + " : " + address + " , process is : " + finalTemp.getProcessNumber());
+                            Map<String, Pair<Integer, Integer>> segments = new HashMap<>(finalTemp.getSegments());
                             for (String s :
                                     segments.keySet()) {
-                                manager.deallocateSegment(new Pair<>(s, segments.get(s).getValue()), process);
-                                refreshScene();
+                                System.out.println("Deallocating " + s + " at address " + segments.get(s).getValue() + " of process : " + finalTemp.getProcessNumber());
+                                manager.deallocateSegment(new Pair<>(s, segments.get(s).getValue()), finalTemp.getProcessNumber());
                             }
+                            refreshScene();
                         }
                     }
                 });
             } else {
-                tempButton.setOnAction(event -> {
-                    manager.deallocateSegment(new Pair<>(finalTempButton.getText(), address), null);
-                    refreshScene();
+                tempButton.setOnMouseClicked(event -> {
+                    MouseButton mouseButton = event.getButton();
+                    if (mouseButton == MouseButton.PRIMARY) {
+                        if (event.getClickCount() == 2) {
+                            manager.deallocateSegment(new Pair<>(finalTempButton.getText(), address), -1);
+                            refreshScene();
+                        }
+                    }
                 });
             }
             tempButton.setPadding(new Insets((memory.get(address).getValue() + count) * multiplier, 0, 0, 100));
