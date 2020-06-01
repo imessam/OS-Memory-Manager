@@ -6,4 +6,4 @@ Written in JAVA , GUI JavaFX.
 
 Mohamed Essam Abdelfatah.
 
-Download : https://github.com/imessam/OS-Memory-Manager/releases/download/1.2/Memory.Manager.exe
+Download : https://github.com/imessam/OS-Memory-Manager/releases/download/1.3/Memory.Manager.exe
